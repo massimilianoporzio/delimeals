@@ -1,5 +1,5 @@
-import 'package:delimeals/pages/categories_screen.dart';
-import 'package:delimeals/pages/category_meals_screen.dart';
+import 'package:delimeals/screens/categories_screen.dart';
+import 'package:delimeals/screens/category_meals_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
