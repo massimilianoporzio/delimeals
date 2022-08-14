@@ -23,8 +23,10 @@ class MyApp extends StatelessWidget {
                   const TextStyle(color: Color.fromRGBO(20, 51, 51, 1.0)),
               bodyText2:
                   const TextStyle(color: Color.fromRGBO(20, 51, 51, 1.0)),
-              headline6:
-                  const TextStyle(fontSize: 22, fontFamily: 'RobotoCondensed')),
+              headline6: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'RobotoCondensed')),
         ),
         home: const CategoriesScreen());
   }
