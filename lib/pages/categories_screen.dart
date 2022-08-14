@@ -1,15 +1,18 @@
 import 'package:delimeals/category_item.dart';
 import 'package:delimeals/dummy_data.dart';
+import 'package:delimeals/models/category.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({Key? key}) : super(key: key);
+  const CategoriesScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('DeliMeals ciao Giovanni e Lollo'),
+        title: const Text('DeliMeals ciao Tere, Giovanni e Lollo'),
       ),
       body: GridView(
         padding: const EdgeInsets.all(25),
@@ -21,6 +24,7 @@ class CategoriesScreen extends StatelessWidget {
         ),
         children: DUMMY_CATEGORIES.map((category) {
           return CategoryItem(
+            id: category.id,
             color: category.color,
             title: category.title,
           );
