@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
         MealDetailScreen.routeName: (ctx) => const MealDetailScreen(),
       },
       onGenerateRoute: (settings) {
+        //QUANDO PASSO VERSO UNA ROUTE
         print(settings.arguments);
       },
       onUnknownRoute: (settings) {
