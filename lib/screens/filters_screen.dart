@@ -1,3 +1,4 @@
+import 'package:delimeals/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class FiltersScreen extends StatelessWidget {
@@ -6,6 +7,9 @@ class FiltersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Filters'));
+    return Scaffold(
+        appBar: AppBar(title: const Text('Your Filters')),
+        drawer: const MainDrawer(),
+        body: const Center(child: Text('Filters')));
   }
 }
