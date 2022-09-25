@@ -1,7 +1,8 @@
 import 'package:delimeals/screens/categories_screen.dart';
 import 'package:delimeals/screens/category_meals_screen.dart';
+import 'package:delimeals/screens/filters_screen.dart';
 import 'package:delimeals/screens/meal_detail_screen.dart';
-import 'package:delimeals/screens/tabs_screen2.dart';
+import 'package:delimeals/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => const TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => const CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => const MealDetailScreen(),
+        FiltersScreen.routeName: (ctx) => const FiltersScreen()
       },
       onGenerateRoute: (settings) {
         //QUANDO PASSO VERSO UNA ROUTE

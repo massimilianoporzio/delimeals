@@ -1,9 +1,10 @@
+import 'package:delimeals/screens/filters_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
 
-  Widget buildListTile(String title, IconData icon) {
+  Widget buildListTile(String title, IconData icon, VoidCallback tapHandler) {
     //SE VOGLIO FARE BUILD O ACCEDERE A THEME ECC MEGLIO USARE WIDGET A PARTE SU FILE A PARTE SE NO PARTE IL BUILD DEL MAINDRAWER E NON SOLO DEL LISTTITLE
     return ListTile(
       leading: Icon(
@@ -18,7 +19,7 @@ class MainDrawer extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: () {},
+      onTap: tapHandler,
     );
   }
 
@@ -44,8 +45,12 @@ class MainDrawer extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        buildListTile('Meals', Icons.restaurant),
-        buildListTile('Filters', Icons.settings),
+        buildListTile('Meals', Icons.restaurant, () {
+          Navigator.of(context).pushNamed('/');
+        }),
+        buildListTile('Filters', Icons.settings, () {
+          Navigator.of(context).pushNamed(FiltersScreen.routeName);
+        }),
       ]),
     );
   }
