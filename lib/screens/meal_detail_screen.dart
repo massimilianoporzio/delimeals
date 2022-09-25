@@ -15,64 +15,72 @@ class MealDetailScreen extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(selectedMeal.title),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: mediaQuery.size.height * 0.3,
-                width: double.infinity,
-                child: Image.network(selectedMeal.imageUrl, fit: BoxFit.cover),
+      appBar: AppBar(
+        title: Text(selectedMeal.title),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: mediaQuery.size.height * 0.3,
+              width: double.infinity,
+              child: Image.network(selectedMeal.imageUrl, fit: BoxFit.cover),
+            ),
+            buildSectionTitle(context, 'Ingredients'),
+            buildContainer(
+              context,
+              ListView.builder(
+                itemBuilder: (context, index) {
+                  final selectedIngredient = selectedMeal.ingredients[index];
+                  return Card(
+                    color: Theme.of(context).colorScheme.secondary,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
+                      child: Text(selectedIngredient),
+                    ),
+                  );
+                },
+                itemCount: selectedMeal.ingredients.length,
               ),
-              buildSectionTitle(context, 'Ingredients'),
-              buildContainer(
-                context,
-                ListView.builder(
-                  itemBuilder: (context, index) {
-                    final selectedIngredient = selectedMeal.ingredients[index];
-                    return Card(
-                      color: Theme.of(context).colorScheme.secondary,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 10),
-                        child: Text(selectedIngredient),
-                      ),
-                    );
-                  },
-                  itemCount: selectedMeal.ingredients.length,
-                ),
-              ),
-              buildSectionTitle(context, 'Steps'),
-              buildContainer(
-                context,
-                ListView.builder(
-                  itemBuilder: (ctx, index) {
-                    return Column(
-                      children: [
-                        ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.primary,
-                              child: Text(
-                                '# ${index + 1}',
-                                style: const TextStyle(color: Colors.white),
-                              ),
+            ),
+            buildSectionTitle(context, 'Steps'),
+            buildContainer(
+              context,
+              ListView.builder(
+                itemBuilder: (ctx, index) {
+                  return Column(
+                    children: [
+                      ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
+                            child: Text(
+                              '# ${index + 1}',
+                              style: const TextStyle(color: Colors.white),
                             ),
-                            title: Text(selectedMeal.steps[index])),
-                        const Divider(
-                          color: Colors.grey,
-                        ),
-                      ],
-                    );
-                  },
-                  itemCount: selectedMeal.steps.length,
-                ),
+                          ),
+                          title: Text(selectedMeal.steps[index])),
+                      const Divider(
+                        color: Colors.grey,
+                      ),
+                    ],
+                  );
+                },
+                itemCount: selectedMeal.steps.length,
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.delete),
+        onPressed: () {
+          Navigator.of(context)
+              .pop(); //pop tolglie 1 pagina dalla cima dello stack
+        },
+      ),
+    );
   }
 
   Container buildSectionTitle(BuildContext context, String title) {
