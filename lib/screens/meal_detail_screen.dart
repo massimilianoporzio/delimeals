@@ -76,8 +76,8 @@ class MealDetailScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.delete),
         onPressed: () {
-          Navigator.of(context)
-              .pop(); //pop tolglie 1 pagina dalla cima dello stack
+          Navigator.of(context).pop(
+              mealId); //pop tolglie 1 pagina dalla cima dello stack e passo anche l'id
         },
       ),
     );
