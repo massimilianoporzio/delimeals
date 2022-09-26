@@ -67,7 +67,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
               removeItem: _removeMeal,
             );
           },
-          itemCount: displayedMeals?.length),
+          itemCount: displayedMeals.length),
     );
   }
 }
