@@ -14,16 +14,7 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Map<String, dynamic>> _pages = [
-    {
-      'page': const CategoriesScreen(),
-      'title': 'Categories',
-    },
-    {
-      'page': const FavoritesScreen(),
-      'title': 'Favorites',
-    }
-  ];
+  late List<Map<String, dynamic>> _pages;
 
   int _selectedPageIndex = 0;
 
@@ -32,6 +23,23 @@ class _TabsScreenState extends State<TabsScreen> {
     setState(() {
       _selectedPageIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    _pages = [
+      {
+        'page': const CategoriesScreen(),
+        'title': 'Categories',
+      },
+      {
+        'page': FavoritesScreen(
+          favoriteMeals: widget.favoriteMeals,
+        ),
+        'title': 'Favorites',
+      }
+    ];
+    super.initState();
   }
 
   @override

@@ -2,8 +2,11 @@ import 'package:delimeals/screens/categories_screen.dart';
 import 'package:delimeals/screens/favorites_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../models/meal.dart';
+
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({Key? key}) : super(key: key);
+  final List<Meal> favoriteMeals;
+  const TabsScreen({Key? key, required this.favoriteMeals}) : super(key: key);
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -28,8 +31,13 @@ class _TabsScreenState extends State<TabsScreen> {
             )
           ]),
         ),
-        body: const TabBarView(
-          children: [CategoriesScreen(), FavoritesScreen()],
+        body: TabBarView(
+          children: [
+            const CategoriesScreen(),
+            FavoritesScreen(
+              favoriteMeals: widget.favoriteMeals,
+            )
+          ],
         ),
       ),
     ); //scaffold to manage entire screen
