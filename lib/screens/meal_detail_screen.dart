@@ -2,7 +2,11 @@ import 'package:delimeals/dummy_data%20.dart';
 import 'package:flutter/material.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({Key? key}) : super(key: key);
+  final Function(String id) toggleFavorite;
+  final Function(String id) isFavorite;
+  const MealDetailScreen(
+      {Key? key, required this.toggleFavorite, required this.isFavorite})
+      : super(key: key);
 
   static const routeName = '/meal-detail';
 
@@ -74,11 +78,8 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.delete),
-        onPressed: () {
-          Navigator.of(context).pop(
-              mealId); //pop tolglie 1 pagina dalla cima dello stack e passo anche l'id
-        },
+        onPressed: () => toggleFavorite(mealId),
+        child: Icon(isFavorite(mealId) ? Icons.star : Icons.star_border),
       ),
     );
   }
