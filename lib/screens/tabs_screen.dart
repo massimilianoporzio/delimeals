@@ -3,8 +3,11 @@ import 'package:delimeals/screens/favorites_screen.dart';
 import 'package:delimeals/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
+import '../models/meal.dart';
+
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({Key? key}) : super(key: key);
+  final List<Meal> favoriteMeals;
+  const TabsScreen({Key? key, required this.favoriteMeals}) : super(key: key);
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
