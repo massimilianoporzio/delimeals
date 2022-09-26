@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 class FiltersScreen extends StatefulWidget {
   static const routeName = "/filters";
-  const FiltersScreen({super.key});
+  final Function saveFilters;
+  final Map<String, bool> currentFilters;
+  const FiltersScreen(
+      {super.key, required this.saveFilters, required this.currentFilters});
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
@@ -14,6 +17,15 @@ class _FiltersScreenState extends State<FiltersScreen> {
   var _vegetarian = false;
   var _vegan = false;
   var _lactoseFree = false;
+
+  @override
+  void initState() {
+    _glutenFree = widget.currentFilters['gluten']!;
+    _vegetarian = widget.currentFilters['vegetarian']!;
+    _vegan = widget.currentFilters['vegan']!;
+    _lactoseFree = widget.currentFilters['lactose']!;
+    super.initState();
+  }
 
   Widget _buildSwitchListTitle(String title, String subtitle, bool currentValue,
       Function(bool) updateValue) {
@@ -27,7 +39,39 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Your Filters')),
+        appBar: AppBar(
+          title: const Text('Your Filters'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  final selectedFilters = {
+                    'gluten': _glutenFree,
+                    'lactose': _lactoseFree,
+                    'vegetarian': _vegetarian,
+                    'vegan': _vegan
+                  };
+                  widget.saveFilters(selectedFilters);
+                },
+                icon: const Icon(Icons.save)),
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    _glutenFree = false;
+                    _lactoseFree = false;
+                    _vegan = false;
+                    _vegetarian = false;
+                  });
+                  final selectedFilters = {
+                    'gluten': _glutenFree,
+                    'lactose': _lactoseFree,
+                    'vegetarian': _vegetarian,
+                    'vegan': _vegan
+                  };
+                  widget.saveFilters(selectedFilters);
+                },
+                icon: const Icon(Icons.clear)),
+          ],
+        ),
         drawer: const MainDrawer(),
         body: Column(
           children: [
